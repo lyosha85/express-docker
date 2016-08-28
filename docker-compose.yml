@@ -10,3 +10,26 @@ services:
       - /app/node_modules
     ports:
       - 80:3000
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:5.5
+    environment:
+      - MYSQL_ROOT_PASSWORD=test
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+    ports:
+      - 3306:3306
+  # migrations:
+  #   image: willrstern/test-db-migrations
+  #   environment:
+  #     - NODE_ENV=development
+  #   depends_on:
+  #     - mysql
+  # fixtures:
+  #   image: willrstern/test-db-fixtures:latest
+  #   environment:
+  #     - NODE_ENV=development
+  #   depends_on:
+  #     - mysql
